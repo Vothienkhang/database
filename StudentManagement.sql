@@ -111,6 +111,30 @@ JOIN Student S ON M.StudentId = S.StudentId
 JOIN Subject Sub ON M.SubId = Sub.SubId
 ORDER BY M.Mark DESC, S.StudentName ASC;
 
+--------------------------------------------------------------
+Homework2:
+
+// Hiển thị số lượng sinh viên ở từng nơi
+select Address, count(StudentId) as 'Số lượng sinh viên'
+from student group by Address;
+
+// Tính điểm trung bình các môn học của mỗi học viên
+select S.StudentId, S.StudentName, AVG(Mark)
+from Student S join Mark M on S.StudentId = M.StudentId
+group by S.StudentId, S.StudentName
+
+// Hiển thị những bạn học viên co điểm trung bình các môn học lớn hơn 15
+select S.StudentId, S.StudentName, AVG(Mark)
+from Student S join Mark M on S.StudentId = M.StudentId
+group by S.StudentId, S.StudentName
+having avg(Mark) >=10;
+
+// Hiển thị thông tin các học viên có điểm trung bình lớn nhất.
+select S.StudentId, S.StudentName, AVG(Mark)
+from Student S join Mark M on S.StudentId = M.StudentId
+group by S.StudentId, S.StudentName
+having avg(mark) >= all (select avg(mark) from Mark group by mark.StudentId);
+
 
 
 
