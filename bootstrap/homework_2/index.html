@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MINI APP Surface Style Landing Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --text-dark: #1a1a1a;
+      --text-muted: #5f5f5f;
+      --border-soft: #e8e8e8;
+      --bg-soft: #f5f5f7;
+      --bg-dark: #0f1720;
+    }
+
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-dark);
+      background: #fff;
+    }
+
+    .navbar {
+      border-bottom: 1px solid #efefef;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-link,
+    .navbar-brand {
+      font-size: 0.95rem;
+      color: #222 !important;
+    }
+
+    .announcement {
+      font-size: 0.92rem;
+      background: #f8f9fa;
+      border-bottom: 1px solid #ececec;
+    }
+
+    .hero {
+      min-height: 82vh;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.95)),
+        radial-gradient(circle at top right, rgba(121, 173, 255, 0.28), transparent 35%),
+        radial-gradient(circle at left center, rgba(203, 211, 255, 0.4), transparent 28%),
+        #f5f7fb;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5.3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+    }
+
+    .hero p.lead {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 600px;
+    }
+
+    .btn-dark-custom {
+      background: #111;
+      color: #fff;
+      border-radius: 999px;
+      padding: 0.8rem 1.4rem;
+      font-weight: 600;
+      border: none;
+    }
+
+    .btn-dark-custom:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    .btn-light-custom {
+      background: #fff;
+      color: #111;
+      border: 1px solid #d9d9d9;
+      border-radius: 999px;
+      padding: 0.8rem 1.4rem;
+      font-weight: 600;
+    }
+
+    .device-mockup {
+      position: relative;
+      margin-inline: auto;
+      max-width: 620px;
+      aspect-ratio: 16 / 10;
+      border-radius: 28px;
+      background: linear-gradient(145deg, #1f2937, #4b5563 45%, #cfd8e3 95%);
+      padding: 14px;
+      box-shadow: 0 30px 80px rgba(17, 24, 39, 0.2);
+    }
+
+    .device-screen {
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04)),
+        linear-gradient(135deg, #8ec5fc, #e0c3fc 55%, #ffffff);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .device-screen::before,
+    .device-screen::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(6px);
+    }
+
+    .device-screen::before {
+      width: 320px;
+      height: 320px;
+      background: rgba(255,255,255,0.45);
+      right: -60px;
+      top: -40px;
+    }
+
+    .device-screen::after {
+      width: 240px;
+      height: 240px;
+      background: rgba(80, 120, 255, 0.18);
+      left: 40px;
+      bottom: -60px;
+    }
+
+    .feature-card,
+    .product-card,
+    .info-card,
+    .faq-item {
+      border: 1px solid var(--border-soft);
+      border-radius: 24px;
+      background: #fff;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .feature-card:hover,
+    .product-card:hover,
+    .info-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+    }
+
+    .feature-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #f3f6fb;
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 3vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .muted {
+      color: var(--text-muted);
+    }
+
+    .product-visual {
+      height: 240px;
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.7), transparent 40%),
+        linear-gradient(135deg, #d7e5ff, #eef2ff 55%, #ffffff);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-visual::before {
+      content: "";
+      position: absolute;
+      inset: 18% 15%;
+      border-radius: 22px;
+      background: linear-gradient(145deg, #2b3440, #808c9d 60%, #f3f5f7);
+      box-shadow: 0 16px 30px rgba(20, 20, 30, 0.12);
+      transform: perspective(900px) rotateX(10deg) rotateY(-18deg);
+    }
+
+    .promo-banner {
+      background: linear-gradient(135deg, #111827, #243b53 45%, #2b5876);
+      color: white;
+      border-radius: 32px;
+      overflow: hidden;
+    }
+
+    .compare-box {
+      background: var(--bg-soft);
+      border-radius: 30px;
+    }
+
+    .faq-item .accordion-button {
+      border-radius: 24px !important;
+      box-shadow: none !important;
+      font-weight: 600;
+      padding: 1.2rem 1.4rem;
+    }
+
+    .faq-item .accordion-button:not(.collapsed) {
+      background: #fff;
+      color: #111;
+    }
+
+    footer {
+      background: #f8f9fa;
+      border-top: 1px solid #ececec;
+    }
+
+    .small-note {
+      font-size: 0.84rem;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+  <div class="announcement text-center py-2">
+    Get up to 20% off selected devices this week. <a href="#products" class="text-dark fw-semibold">Shop deals</a>
+  </div>
+
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">MINI APP</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="#products">Devices</a></li>
+          <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="#compare">Compare</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+          <li class="nav-item ms-lg-2"><a class="btn btn-sm btn-dark rounded-pill px-3" href="#">Buy now</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container py-5">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <span class="badge rounded-pill text-bg-light border px-3 py-2 mb-3">New generation devices</span>
+          <h1>Power meets elegance.</h1>
+          <p class="lead mt-4 mb-4">
+            Meet NovaBook and NovaFlex — premium devices designed for speed, AI-ready workflows, all-day battery, and a refined modern experience.
+          </p>
+          <div class="d-flex flex-wrap gap-3">
+            <a href="#products" class="btn btn-dark-custom">Explore devices</a>
+            <a href="#compare" class="btn btn-light-custom">Compare models</a>
+          </div>
+          <p class="small-note mt-4 mb-0">Inspired by clean product storytelling, large visuals, and modular content sections similar to premium device brands.</p>
+        </div>
+        <div class="col-lg-6">
+          <div class="device-mockup">
+            <div class="device-screen d-flex align-items-end p-4">
+              <div class="bg-white bg-opacity-75 rounded-4 p-4 shadow-sm w-100">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <span class="fw-semibold">MINI APP OS</span>
+                  <span class="badge text-bg-dark rounded-pill">AI ready</span>
+                </div>
+                <div class="row g-3 text-center">
+                  <div class="col-4">
+                    <div class="rounded-4 bg-light py-3">
+                      <div class="fw-bold fs-4">23h</div>
+                      <div class="small text-secondary">Battery</div>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="rounded-4 bg-light py-3">
+                      <div class="fw-bold fs-4">4x</div>
+                      <div class="small text-secondary">AI speed</div>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="rounded-4 bg-light py-3">
+                      <div class="fw-bold fs-4">1.2kg</div>
+                      <div class="small text-secondary">Lightweight</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="products" class="py-5">
+    <div class="container py-4">
+      <div class="text-center mb-5">
+        <h2 class="section-title">Explore the lineup</h2>
+        <p class="muted mb-0">Two flagship devices. One polished ecosystem.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="product-card p-4 h-100">
+            <div class="product-visual mb-4"></div>
+            <h3 class="fw-bold">NovaFlex Pro</h3>
+            <p class="muted">A versatile 2-in-1 for note-taking, sketching, meetings, and everyday mobility.</p>
+            <div class="d-flex gap-3 flex-wrap mb-3">
+              <span class="badge text-bg-light border rounded-pill px-3 py-2">Detachable keyboard</span>
+              <span class="badge text-bg-light border rounded-pill px-3 py-2">Touch + pen</span>
+              <span class="badge text-bg-light border rounded-pill px-3 py-2">Ultra portable</span>
+            </div>
+            <a href="#" class="fw-semibold text-decoration-none">Explore NovaFlex Pro →</a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="product-card p-4 h-100">
+            <div class="product-visual mb-4"></div>
+            <h3 class="fw-bold">NovaBook Air</h3>
+            <p class="muted">A sleek performance laptop built for multitasking, creative work, and long battery life.</p>
+            <div class="d-flex gap-3 flex-wrap mb-3">
+              <span class="badge text-bg-light border rounded-pill px-3 py-2">High performance</span>
+              <span class="badge text-bg-light border rounded-pill px-3 py-2">All-day battery</span>
+              <span class="badge text-bg-light border rounded-pill px-3 py-2">Premium display</span>
+            </div>
+            <a href="#" class="fw-semibold text-decoration-none">Explore NovaBook Air →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="py-5 bg-light">
+    <div class="container py-4">
+      <div class="row align-items-end mb-4">
+        <div class="col-lg-7">
+          <h2 class="section-title">Built for modern work and life</h2>
+        </div>
+        <div class="col-lg-5">
+          <p class="muted mb-0">The layout below mirrors the premium, benefits-first storytelling style seen on current Surface pages, including device categories, feature highlights, and comparison prompts. ([microsoft.com](https://www.microsoft.com/en-us/surface))</p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="feature-card p-4 h-100">
+            <div class="feature-icon mb-3">⚡</div>
+            <h4 class="fw-bold">The speed you need</h4>
+            <p class="muted mb-0">Fast performance for multitasking, creative workflows, and AI-assisted productivity.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card p-4 h-100">
+            <div class="feature-icon mb-3">🔋</div>
+            <h4 class="fw-bold">Battery that lasts</h4>
+            <p class="muted mb-0">Long battery life that keeps up with workdays, classes, and travel without stress.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card p-4 h-100">
+            <div class="feature-icon mb-3">✨</div>
+            <h4 class="fw-bold">AI-powered tools</h4>
+            <p class="muted mb-0">Smarter search, writing help, image enhancement, and intelligent workflow support.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5">
+    <div class="container py-4">
+      <div class="promo-banner p-4 p-lg-5">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-7">
+            <span class="badge rounded-pill text-bg-light text-dark px-3 py-2 mb-3">Upgrade experience</span>
+            <h2 class="display-5 fw-bold">Make the move to your next device.</h2>
+            <p class="mb-4 text-white-50">A dedicated section like this works well for promotions, trade-in messaging, or switching campaigns.</p>
+            <a href="#" class="btn btn-light rounded-pill px-4 py-2 fw-semibold">Learn more</a>
+          </div>
+          <div class="col-lg-5">
+            <div class="bg-white bg-opacity-10 rounded-4 p-4 border border-light border-opacity-25">
+              <div class="d-flex justify-content-between py-2 border-bottom border-light border-opacity-25">
+                <span>Trade-in bonus</span><strong>Up to $500</strong>
+              </div>
+              <div class="d-flex justify-content-between py-2 border-bottom border-light border-opacity-25">
+                <span>Battery life</span><strong>Up to 23 hours</strong>
+              </div>
+              <div class="d-flex justify-content-between py-2">
+                <span>On-device AI</span><strong>4x faster</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="compare" class="py-5">
+    <div class="container py-4">
+      <div class="compare-box p-4 p-lg-5">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-6">
+            <h2 class="section-title">See which model is right for you</h2>
+            <p class="muted">Use this section to help users decide quickly based on usage, portability, and performance.</p>
+            <a href="#" class="btn btn-dark rounded-pill px-4 py-2">Compare now</a>
+          </div>
+          <div class="col-lg-6">
+            <div class="table-responsive bg-white rounded-4 p-3 shadow-sm">
+              <table class="table align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th>Model</th>
+                    <th>Best for</th>
+                    <th>Battery</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="fw-semibold">NovaFlex Pro</td>
+                    <td>Portability + touch</td>
+                    <td>18h</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-semibold">NovaBook Air</td>
+                    <td>Performance + work</td>
+                    <td>23h</td>
+                  </tr>
+                  <tr>
+                    <td class="fw-semibold">NovaBook Studio</td>
+                    <td>Creative production</td>
+                    <td>16h</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="py-5 bg-light">
+    <div class="container py-4">
+      <div class="text-center mb-5">
+        <h2 class="section-title">Frequently asked questions</h2>
+        <p class="muted mb-0">A clean accordion keeps the page informative without feeling heavy.</p>
+      </div>
+      <div class="accordion" id="faqAccordion">
+        <div class="accordion-item faq-item mb-3">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+              How is MINI APP different from other premium devices?
+            </button>
+          </h2>
+          <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+            <div class="accordion-body muted">MINI APP combines lightweight hardware, AI-ready performance, elegant design, and a simple ecosystem for work and creativity.</div>
+          </div>
+        </div>
+        <div class="accordion-item faq-item mb-3">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+              Which model is best for students or business users?
+            </button>
+          </h2>
+          <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body muted">NovaFlex Pro suits mobility and note-taking, while NovaBook Air is better for heavier multitasking and long-form productivity.</div>
+          </div>
+        </div>
+        <div class="accordion-item faq-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+              Can I customize this landing page for my own product?
+            </button>
+          </h2>
+          <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body muted">Yes. Replace the brand name, copy, device visuals, colors, and CTA links. This structure is intentionally reusable.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h5 class="fw-bold">MINI APP</h5>
+          <p class="muted mb-0">Premium devices built for a smoother digital life.</p>
+        </div>
+        <div class="col-md-2">
+          <h6 class="fw-semibold">Products</h6>
+          <ul class="list-unstyled muted mb-0">
+            <li>NovaFlex</li>
+            <li>NovaBook</li>
+            <li>Accessories</li>
+          </ul>
+        </div>
+        <div class="col-md-2">
+          <h6 class="fw-semibold">Support</h6>
+          <ul class="list-unstyled muted mb-0">
+            <li>Help center</li>
+            <li>Warranty</li>
+            <li>Contact</li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h6 class="fw-semibold">Newsletter</h6>
+          <div class="input-group">
+            <input type="email" class="form-control rounded-start-pill" placeholder="Enter your email">
+            <button class="btn btn-dark rounded-end-pill px-4">Subscribe</button>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2 pt-4 mt-4 border-top small-note">
+        <span>© 2026 MINI APP. All rights reserved.</span>
+        <span>Bootstrap landing page demo inspired by current premium device merchandising patterns on Microsoft Surface. ([microsoft.com](https://www.microsoft.com/en-us/surface))</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
